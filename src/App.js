@@ -1,23 +1,57 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function TableHead(){
   return (
+    <thead>
+      <tr>
+        <th>
+          Nom
+        </th>
+      </tr>
+    </thead>
+  )
+}
+
+function Table(props){
+
+  return (
+    <table>
+      <TableHead />
+      <tbody>
+
+        {
+          props.tasks.map(task => {
+              return (
+                <tr>
+                  <td>{task}</td>
+                </tr>
+              )
+          })
+        }
+        
+      </tbody>
+    </table>
+  )
+}
+//comment récupérer la liste des taches depuis express ! 
+
+// on va utiliser fetch pour envoyer une requête à express
+// attention : CORS 
+
+function App() {
+
+  return ( // JSX = langage de template qui mélange le html et le javascript
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+        
+        <p id="message">
+          Bonjour les poulets
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        
+        <Table
+          tasks={ ["acheter poulet", "dormir", "courir"]}
+       />
+
     </div>
   );
 }
